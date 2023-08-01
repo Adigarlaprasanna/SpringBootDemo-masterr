@@ -2,7 +2,7 @@ package com.example.demo.Services;
 
 import com.example.demo.Entities.User;
 import com.example.demo.Repository.UserRepo;
-import com.example.demo.Repository.UsersRepo;
+import com.example.demo.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -19,6 +19,7 @@ public class UserService {
     public List<User> saveAllUsers(List<User> users){
         return userRepo.saveAll(users);
     }
+
     public List<User> getAllUsers(){
         return userRepo.findAll();
     }

@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentsResponse {
+    private long commentId;
     private long postId;
-    private long id;
     private long userId;
-    private String name;
     private String body;
 }

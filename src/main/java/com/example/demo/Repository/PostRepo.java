@@ -8,13 +8,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PostRepo extends JpaRepository<Post, Long> {
 
-    @Query("SELECT new com.example.demo.dto.PostResponse(u.id,p.id,p.title,p.body) FROM Users u JOIN u.users p")
-    public List<PostResponse> getPostInformation();
+    @Query("SELECT NEW com.example.demo.dto.PostResponse(p.user.id, p.id, p.title, p.body) " +
+            "FROM Post p")
+    List<PostResponse> getAllPosts();
 
-    @Query("SELECT new com.example.demo.dto.PostResponse(u.id,p.id,p.title,p.body) FROM Users u JOIN u.users p where p.id =:id")
-    public PostResponse getPostById(@Param("id") long id);
+    @Query("SELECT NEW com.example.demo.dto.PostResponse(p.user.id, p.id, p.title, p.body) " +
+            "FROM Post p WHERE p.id = :postId")
+    Optional<PostResponse> getPostById(@Param("postId") long postId);
 }
